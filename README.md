@@ -1,7 +1,7 @@
 # CA0 - Precious Metal Price Tracker
 
 **Student:** Philip Eykamp  
-**Course:** CS 5287 
+**Course:** CS 5287  
 **Date:** September 4, 2025  
 **Deadline:** September 5, 2025
 
