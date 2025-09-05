@@ -24,6 +24,13 @@ This project implements a complete IoT data pipeline for tracking precious metal
 | **HTTP Client** | Python requests/aiohttp | Latest | API data fetching |
 | **Kafka Client** | confluent-kafka-python | Latest | Kafka integration |
 
+
+## Application Components
+- **Producer**: Fetches real metals prices (with simulated fallback)
+- **Processor**: Consumes Kafka messages and stores in MongoDB
+- **Health Checks**: Both services expose health endpoints for monitoring
+- **Data Enrichment**: Adds market session info and price categorization
+
 ## Infrastructure Architecture
 
 ### VM Layout
@@ -43,8 +50,8 @@ This project implements a complete IoT data pipeline for tracking precious metal
 - **vCPUs**: 2
 - **RAM**: 4 GB
 - **Storage**: 20 GB gp3 EBS
-- **Region**: [Your chosen AWS region]
-- **Availability Zone**: [Your chosen AZ]
+- **Region**: United States (Ohio)
+- **Availability Zone**: us-east-2c
 
 ## Data Flow Architecture
 
