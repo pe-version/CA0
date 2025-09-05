@@ -245,11 +245,44 @@ docker logs processor-container
 - [ ] Documentation finalized
 
 ### Issues Encountered
-[Document any problems and solutions here]
+
+## Critical AWS Configuration Issue
+- AWS Security Groups had no outbound rules by default
+- Added "All Traffic" outbound rule to 0.0.0.0/0
+- This enabled package downloads and Docker installation
+
+## Installation Notes
+- Encountered minor repository warnings during `apt update` - proceeded with cached packages successfully
 
 ### Deviations from Reference Stack
 [Document any changes made and why]
 
+### Installing Docker Script
+# 1. Update package index
+sudo apt update
+
+# 2. Install prerequisite packages
+sudo apt install apt-transport-https ca-certificates curl gnupg lsb-release
+
+# 3. Add Docker's official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# 4. Set up the stable repository
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 5. Update package index again
+sudo apt update
+
+# 6. Install Docker Engine
+sudo apt install docker-ce docker-ce-cli containerd.io
+
+# 7. Add user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
+
+# 8. Install Docker Compose manually
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 ---
 
 *Last updated: [Date/Time]*
