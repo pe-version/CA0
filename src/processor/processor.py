@@ -365,9 +365,3 @@ class Config:
         
         if not cls.MONGODB_URI:
             raise ValueError("MONGODB_URI must be set")
-
-# processor/requirements.txt
-kafka-python==2.0.2
-pymongo==4.6.0
-flask==3.0.0
-python-dotenv==1.0.0
