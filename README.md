@@ -186,19 +186,19 @@ docker logs processor-container
 ### vm-kafka
 - **Instance ID**: i-0d72daad0d7a2fa8a
 - **Private IP**: 172.31.36.12
-- **Public IP**: 18.225.9.21
+- **Public IP**: 18.222.254.44
 - **Security Group**: kafka-sg
 
 ### vm-db
 - **Instance ID**: i-051f7e1a5615ecfce
 - **Private IP**: 172.31.39.1
-- **Public IP**: 3.133.82.201
+- **Public IP**: 18.222.152.233
 - **Security Group**: db-sg
 
 ### vm-proc
 - **Instance ID**: i-0c9db61c1398d3e70
 - **Private IP**: 172.31.36.45
-- **Public IP**: 18.222.196.26
+- **Public IP**: 3.16.165.131
 - **Security Group**: processor-sg
 
 ## Troubleshooting
