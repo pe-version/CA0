@@ -208,6 +208,14 @@ docker logs processor-container
 - **Public IP**: 3.16.165.131
 - **Security Group**: processor-sg
 
+### vm-producer
+- **Instance ID**: i-0e829e20f8d5deef7
+- **Private IP**: 172.31.33.195
+- **Public IP**: 18.222.84.164
+- **Security Group**: producer-sg
+
+
+
 ## Troubleshooting
 
 ### Common Issues
