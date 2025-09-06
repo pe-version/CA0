@@ -41,6 +41,10 @@ See `CA0-Recording.mov` for complete pipeline demonstration showing data flow fr
 - **vm-db**: MongoDB database server
 - **vm-proc**: Data processor + producer containers
 
+### Network Diagram Below (in docs folder)
+![Network Diagram](./docs/network-diagram.png)
+
+
 ### Network Configuration
 | VM | Purpose | Open Ports | Services |
 |----|---------|------------|----------|
