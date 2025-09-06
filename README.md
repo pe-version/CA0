@@ -9,6 +9,9 @@
 
 This project implements a complete IoT data pipeline for tracking precious metal prices using a cloud-native architecture. The system fetches real-time metal prices, processes them through a pub/sub messaging system, and stores the results in a NoSQL database.
 
+## Demo Video
+See `CA0-Recording.mov` for complete pipeline demonstration showing data flow from producer through Kafka to MongoDB storage.
+
 ## Reference Software Stack
 
 | Component | Technology | Version | Purpose |
