@@ -406,6 +406,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 - Processor → Kafka (consumes messages)
 - Processor → MongoDB (stores processed data)
 
+## Security Note
+During development, AWS Security Groups were configured with outbound "All Traffic" rules to enable Docker image downloads and package installations. In a production environment, these would be restricted to only essential outbound traffic (DNS, NTP, inter-VM communication) after deployment is complete.
 
+## Screenshots
+See `/docs/screenshots/` folder for:
+- VM deployment verification
+- Service status confirmation  
+- End-to-end data flow demonstration
+- Security configuration evidence
 
 *Last updated: [Date/Time]*
