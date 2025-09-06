@@ -7,6 +7,10 @@
 
 ---
 
+Note: I relied heavily on Claude for this, full disclosure. I learned a lot and endeavored to put this together well and honestly, and in that vein, I wanted to be upfront that Claude helped a whole lot.
+
+---
+
 ## Project Overview
 
 This project implements a complete IoT data pipeline for tracking precious metal prices using a cloud-native architecture. The system fetches real-time metal prices, processes them through a pub/sub messaging system, and stores the results in a NoSQL database.
