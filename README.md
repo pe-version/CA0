@@ -312,4 +312,29 @@ sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.0/docker
 sudo chmod +x /usr/local/bin/docker-compose
 ---
 
+## Configuration Summary
+
+| Component | Image/Version | Host VM | Private IP | Port(s) | Purpose |
+|-----------|---------------|---------|------------|---------|---------|
+| ZooKeeper | confluentinc/cp-zookeeper:7.4.0 | Kafka VM | 172.31.36.12 | 2181 | Kafka cluster coordination |
+| Kafka Broker | confluentinc/cp-kafka:7.4.0 | Kafka VM | 172.31.36.12 | 9092 | Message streaming broker |
+| MongoDB | mongo:6.0 | Database VM | 172.31.39.1 | 27017 | Document storage |
+| Metals Producer | metals-producer:latest | Producer VM | 172.31.33.195 | 8000 | Simulated price data generation |
+| Metals Processor | metals-processor:latest | Processor VM | 172.31.36.45 | 8001 | Message consumption and processing |
+
+### Container Details
+- **All containers**: Run as non-root users (metals-user)
+- **Restart policy**: `--restart unless-stopped` on all application containers
+- **Network mode**: Host networking for producer and processor, bridge networking for infrastructure services
+- **Data persistence**: MongoDB uses named volume `mongodb_data`
+- **Log locations**: All services log to Docker container logs accessible via `docker logs [container-name]`
+
+### Service Dependencies
+- Producer → Kafka (publishes messages)
+- Kafka → ZooKeeper (cluster coordination)
+- Processor → Kafka (consumes messages)
+- Processor → MongoDB (stores processed data)
+
+
+
 *Last updated: [Date/Time]*
