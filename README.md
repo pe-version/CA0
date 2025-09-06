@@ -273,6 +273,65 @@ docker logs processor-container
 
 ### Issues Encountered
 
+# Kafka VM needs: 22, 9092, 2181
+# DB VM needs: 22, 27017  
+# Processor/Producer VMs need: 22, 8000, 8001
+
+# Test specific ports
+telnet [vm-ip] [port]
+```
+
+**Container Build Failures:**
+```bash
+# Check Docker daemon status
+sudo systemctl status docker
+
+# Build with verbose output
+docker build --no-cache --progress=plain -t [image-name] .
+
+# Check disk space
+df -h
+docker system prune -f
+```
+
+### Real-World Issues Encountered
+
+During actual deployment, these specific problems occurred:
+
+1. **AWS Security Groups Blocking Outbound Traffic**
+   - **Problem**: Docker installation failed because VMs couldn't download packages
+   - **Solution**: Added "All Traffic" outbound rule to 0.0.0.0/0
+
+2. **Kafka Cross-VM Communication**
+   - **Problem**: Producer couldn't connect to Kafka from different VM
+   - **Solution**: Fixed `KAFKA_ADVERTISED_LISTENERS` with correct VM private IP
+
+3. **MongoDB Authentication Failures**
+   - **Problem**: Processor couldn't authenticate to MongoDB
+   - **Solution**: Updated connection string format and credentials
+
+4. **Producer Container Restart Loops**
+   - **Problem**: Producer container kept restarting due to import issues
+   - **Solution**: Added proper `if __name__ == "__main__"` block
+
+5. **Docker Group Permissions**
+   - **Problem**: Non-sudo docker commands failed
+   - **Solution**: Logout/login required after adding user to docker group
+
+### Common Issues
+- **Kafka connection refused**: Check security group allows port 9092 between VMs
+- **MongoDB connection timeout**: Verify port 27017 is accessible and credentials are correct
+- **Producer failing**: Check API key and rate limits (using simulation mode as fallback)
+- **No data in MongoDB**: Verify processor is consuming from correct Kafka topic
+- **Health checks failing**: Wait for services to fully start (can take 1-2 minutes)
+
+### Log Locations
+- **Application logs**: `docker logs [container-name]`
+- **System logs**: `/var/log/syslog`
+- **Docker daemon**: `journalctl -u docker.service`
+- **SSH logs**: `/var/log/auth.log`
+- **Deployment logs**: `logs/deployment.log` (if using scripts)
+
 ## Kafka VM Docker Status
 - Docker CE: Installed and running
 - Docker Compose: v1.29.2 (stable version)
